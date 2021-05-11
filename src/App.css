@@ -1,4 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Ubuntu&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mitr&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap");
+:root {
+  --title-font: #77879e;
+  --acc: #e71d60;
+}
 .App {
   min-height: 100vh;
-  /* background-color: red; */
+  /* font-family: "Mitr", sans-serif; */
+  /* font-family: "Roboto", sans-serif; */
+  /* font-family: "Merriweather", serif; */
+  color: #0d080d;
+  font-family: "Itim", cursive;
+  /* font-family: "Source Sans Pro", sans-serif; */
+  /* font-family: "Ubuntu", sans-serif; */
+  /* font-weight: 500; */
+  display: grid;
+  grid-template-rows: 2.35em auto 5em;
+  grid-template-columns: 13.75em 1fr;
+  /* grid-template-columns: 13.75em calc(100vw - 13.75em); */
+  grid-template-areas:
+    "navbar navbar"
+    "leftbar sections"
+    "footer footer";
 }

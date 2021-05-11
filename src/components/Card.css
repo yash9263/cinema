@@ -1,0 +1,25 @@
+.card-container {
+  height: 18em;
+  min-width: 180px;
+  position: relative;
+  border-radius: 0.5em;
+  min-height: 10em;
+  overflow: hidden;
+  margin: 0.75em;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+}
+.card-container img {
+  height: 18em;
+  /* max-width: 213.33px; */
+  transition: all 0.25s ease;
+  opacity: 0.8;
+}
+
+.card-container:hover {
+  cursor: pointer;
+}
+.card-container:hover img {
+  height: 20em;
+  max-width: 22em;
+  opacity: 1;
+}

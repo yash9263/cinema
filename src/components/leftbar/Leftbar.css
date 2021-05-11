@@ -1,0 +1,32 @@
+.leftbar-container {
+  grid-area: leftbar;
+  color: var(--title-font);
+  /* background-color: aquamarine; */
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-left: 2em;
+  border-right: 0.12em solid #e7ecfd;
+}
+.leftbar-container {
+}
+.menu-title {
+  margin: 1em 0;
+  font-size: 1em;
+  letter-spacing: 2px;
+}
+.menu-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.menu-item {
+  margin-bottom: 0.75em;
+  display: flex;
+  align-items: center;
+}
+.box-icon {
+  /* color: red; */
+  font-size: 1.6rem;
+  margin-right: 0.75em;
+  font-weight: bold;
+}

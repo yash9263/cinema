@@ -1,0 +1,4 @@
+.footer-container {
+  grid-area: footer;
+  background-color: aqua;
+}

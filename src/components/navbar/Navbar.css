@@ -1,0 +1,45 @@
+.navbar-container {
+  grid-area: navbar;
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.app-title {
+  font-size: 1.2em;
+  /* font-weight: bold; */
+  color: var(--acc);
+}
+.nav-list {
+  /* display: inline; */
+  margin: 0;
+  padding: 0;
+}
+.nav-item {
+  display: inline;
+  margin-left: 3rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--title-font);
+}
+.search-form {
+  border: 1px solid black;
+  border-radius: 5em;
+  padding: 0.1em 0.45em;
+  /* max-width: 12em; */
+}
+.search-input {
+  border: none;
+  outline: none;
+  /* width: 70%; */
+  color: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  /* letter-spacing: 1px; */
+  padding: 0.175em 0.3em;
+}
+.search-btn {
+  outline: none;
+  border: none;
+  background: inherit;
+}
