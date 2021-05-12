@@ -19,7 +19,7 @@
   cursor: pointer;
 }
 .card-container:hover img {
-  height: 20em;
-  max-width: 22em;
+  /* height: 20em;
+  max-width: 22em; */
   opacity: 1;
 }

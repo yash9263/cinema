@@ -1,0 +1,65 @@
+.title-container {
+  padding-left: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.category-title {
+  flex: 0 0 auto;
+  font-size: 1.15rem;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 1px;
+}
+.divider {
+  flex: 1 1 auto;
+  background-color: var(--divider);
+  height: 0.2em;
+  width: 100%;
+  margin: 0 1em;
+}
+.scroll-btn {
+  min-width: 35px;
+  height: 60px;
+  border-radius: 20px;
+  background: #fff;
+  border: 0px;
+  outline: none;
+  cursor: pointer;
+  z-index: 200;
+  margin: 10px;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+.scroll-btn:hover {
+  transform: translate(0, -10px);
+  box-shadow: 0px 17px 35px rgba(0, 0, 0, 0.07);
+}
+.btn i {
+  font-size: 1.2rem;
+}
+
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.genre-container {
+  overflow: hidden;
+}
+.all-genre {
+  display: flex;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+.all-genre::-webkit-scrollbar {
+  height: 0px;
+}
+.genre-btn {
+  border: none;
+  outline: none;
+  border-radius: 5em;
+  padding: 0.5em 0.7em;
+  margin: 0.5em;
+  font-size: 0.875rem;
+  flex: 1 0 auto;
+}

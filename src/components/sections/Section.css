@@ -2,11 +2,22 @@
 }
 .title-container {
   padding-left: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .category-title {
-  font-size: 1.25rem;
+  flex: 0 0 auto;
+  font-size: 1.15rem;
   font-family: "Oswald", sans-serif;
   letter-spacing: 1px;
+}
+.divider {
+  flex: 1 1 auto;
+  background-color: var(--divider);
+  height: 0.2em;
+  width: 100%;
+  margin: 0 1em;
 }
 .category-title::after {
 }

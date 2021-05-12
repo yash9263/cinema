@@ -1,9 +1,13 @@
 import { useRef } from "react";
+import useApi from "../../hooks/useAPI";
 import posters from "../../posters";
 import Card from "../Card";
 import "./Section.css";
+import { Link } from "react-router-dom";
 
-const Section = () => {
+const Section = ({ title, url, path }) => {
+  const { docs } = useApi(url);
+  // console.log(docs);
   const cards = useRef();
   // console.log(posters);
 
@@ -23,26 +27,33 @@ const Section = () => {
         ? window.innerWidth / 2
         : window.innerWidth - 100;
   };
-  return (
-    <div className="category">
-      <div className="title-container">
-        <h1 className="category-title">Category Name</h1>
-      </div>
-      <div className="section-container">
-        <button id="prev" className="scroll-btn" onClick={handleScrollPrev}>
-          <i class="bx bxs-chevron-left"></i>
-        </button>
-        <div className="all-cards" ref={cards}>
-          {posters.map((movie, index) => (
-            <Card posterURL={movie.poster_path} title={movie.title} />
-          ))}
+  if (docs) {
+    return (
+      <div className="category">
+        <div className="title-container">
+          <Link to={path}>
+            <h1 className="category-title">{title}</h1>
+          </Link>
+          <div className="divider"></div>
         </div>
-        <button id="next" className="scroll-btn" onClick={handleScrollNext}>
-          <i class="bx bxs-chevron-right"></i>
-        </button>
+        <div className="section-container">
+          <button id="prev" className="scroll-btn" onClick={handleScrollPrev}>
+            <i class="bx bxs-chevron-left"></i>
+          </button>
+          <div className="all-cards" ref={cards}>
+            {docs.map((movie, index) => (
+              <Card posterURL={movie.poster_path} title={movie.title} />
+            ))}
+          </div>
+          <button id="next" className="scroll-btn" onClick={handleScrollNext}>
+            <i class="bx bxs-chevron-right"></i>
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    <div>Loading</div>;
+  }
 };
 
 export default Section;
