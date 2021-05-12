@@ -58,8 +58,6 @@ function App() {
             path="/"
             render={(props) => <SectionContainer {...props} />}
           />
-
-          {/* </Route> */}
         </Switch>
         <Footer />
       </div>

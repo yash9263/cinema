@@ -13,15 +13,7 @@ const Navbar = ({ query, setQuery }) => {
       </ul>
 
       <Link to="/search">
-        <button
-          className="search-btn"
-          type="submit"
-          onClick={(event) => {
-            if (query.length < 1) {
-              event.preventDefault();
-            }
-          }}
-        >
+        <button className="search-btn">
           <i className="bx bx-search bx-border-circle"></i>
         </button>
       </Link>
