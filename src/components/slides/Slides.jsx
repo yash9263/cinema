@@ -2,43 +2,41 @@ import "./Slides.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
+const backdropurl = "https://www.themoviedb.org/t/p/original";
 const images = [
-  "https://picsum.photos/1200/700",
-  "https://picsum.photos/1200/700",
-  "https://picsum.photos/1200/700",
+  "/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg",
+  "/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg",
+  "/mYM8x2Atv4MaLulaV0KVJWI1Djv.jpg",
+  "/6zbKgwgaaCyyBXE4Sun4oWQfQmi.jpg",
+  "/pcDc2WJAYGJTTvRSEIpRZwM3Ola.jpg",
 ];
 const Slides = () => {
-  const [imageIndex, setImageIndex] = useState(0);
+  const [imageIndex, setImageIndex] = useState(null);
   useEffect(() => {
-    change();
+    // setImageIndex(0);
+    const interval = setInterval(() => {
+      if (imageIndex === null) {
+        setImageIndex(0 % images.length);
+      } else {
+        setImageIndex((prevIndex) => {
+          return (prevIndex + 1) % images.length;
+        });
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
   }, []);
-  const change = () => {
-    if (imageIndex >= images.length - 1) {
-      setImageIndex(0);
-    } else {
-      setImageIndex(imageIndex + 1);
-    }
-    console.log(imageIndex);
-    setTimeout(change, 4000);
-  };
+
+  // console.log(imageIndex);
   return (
     <div className="slides-container">
-      <div className="img-container">
+      <div className="imgs-container">
         <AnimatePresence>
-          console.log(imageIndex);
-          {images.map((image, index) => {
-            return (
-              <motion.img
-                className="movie-poster"
-                src={image}
-                key={index}
-                alt="aimage"
-                initial={{ opacity: 0, y: 200 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              />
-            );
-          })}
+          <motion.img
+            className="movie-poster"
+            src={backdropurl + images[imageIndex]}
+            alt="aimage"
+          />
         </AnimatePresence>
       </div>
     </div>
