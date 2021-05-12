@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
-  const [searchText, setSearchText] = useState("");
+const Navbar = ({ query, setQuery }) => {
   return (
     <nav className="navbar-container">
       <div className="app-title">cinemaTV</div>
@@ -11,20 +11,20 @@ const Navbar = () => {
         <li className="nav-item">Movies</li>
         <li className="nav-item">TV shows</li>
       </ul>
-      <form className="search-form">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="search"
-          value={searchText}
-          onChange={(event) => {
-            setSearchText(event.target.value);
+
+      <Link to="/search">
+        <button
+          className="search-btn"
+          type="submit"
+          onClick={(event) => {
+            if (query.length < 1) {
+              event.preventDefault();
+            }
           }}
-        />
-        <button className="search-btn" type="submit">
+        >
           <i className="bx bx-search bx-border-circle"></i>
         </button>
-      </form>
+      </Link>
     </nav>
   );
 };

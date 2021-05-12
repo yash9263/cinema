@@ -7,7 +7,7 @@
   align-items: center;
 }
 .category-title {
-  flex: 0 0 auto;
+  flex: 1 0 auto;
   font-size: 1.15rem;
   font-family: "Oswald", sans-serif;
   letter-spacing: 1px;
