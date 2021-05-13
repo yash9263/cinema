@@ -2,9 +2,9 @@
   grid-area: leftbar;
   color: var(--title-font);
   /* background-color: aquamarine; */
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding-left: 2em;
+  padding-left: 1em;
   border-right: 0.12em solid #e7ecfd;
 }
 .leftbar-container {

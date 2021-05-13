@@ -71,7 +71,14 @@ const Genre = () => {
       <div className="movies-container">
         {docs.map((doc) => {
           if (doc.poster_path) {
-            return <Card posterURL={doc.poster_path} title={doc.title} />;
+            return (
+              <Card
+                posterURL={doc.poster_path}
+                title={doc.title}
+                id={doc.id}
+                vote_average={doc.vote_average}
+              />
+            );
           } else {
             return null;
           }

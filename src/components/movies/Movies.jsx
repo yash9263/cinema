@@ -21,8 +21,8 @@ const Movies = ({ url, title }) => {
 
   useEffect(() => {
     setmovieUrl(url.substring(0, url.length - 1) + page);
-    console.log(docs, movieurl, page);
-  }, [page, docs]);
+    // console.log(docs, movieurl, page);
+  }, [page, docs, title, url]);
   return (
     <div>
       <div className="title-container">
@@ -51,7 +51,15 @@ const Movies = ({ url, title }) => {
       </div>
       <div className="movies-container">
         {docs.map((movie) => {
-          return <Card posterURL={movie.poster_path} title={movie.title} />;
+          // console.log(movie.vote_average);
+          return (
+            <Card
+              posterURL={movie.poster_path}
+              title={movie.title}
+              id={movie.id}
+              vote_average={movie.vote_average}
+            />
+          );
         })}
       </div>
     </div>

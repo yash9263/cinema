@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Leftbar from "./components/leftbar/Leftbar";
 import Movies from "./components/movies/Movies";
@@ -9,7 +9,8 @@ import useApi from "./hooks/useAPI";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Genre from "./components/movies/Genre";
 import Search from "./components/movies/Search";
-//`https://api.themoviedb.org/3/movie/550?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
+import Movie from "./components/movie/Movie";
+import Home from "./components/home/Home";
 
 const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
 
@@ -18,48 +19,101 @@ const nowPlaying = `https://api.themoviedb.org/3/movie/now_playing?api_key=${pro
 const topRated = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
 
 function App() {
-  const [query, setQuery] = useState("");
-  // console.log(docs);
-
+  // useEffect(() => {}, []);
+  // return <Movie />;
   return (
     <Router>
       <div className="App">
-        {/* <Movies /> */}
-        <Navbar query={query} setQuery={setQuery} />
-        <Leftbar />
         <Switch>
           <Route
             // exact
+            path="/toprated"
+            render={(props) => {
+              return (
+                <>
+                  <Navbar />
+                  <Leftbar />
+                  <Movies title="Top Rated" url={topRated} {...props} />
+                  <Footer />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/genre"
+            render={(props) => {
+              return (
+                <>
+                  <Navbar />
+                  <Leftbar /> <Genre {...props} />
+                  <Footer />
+                </>
+              );
+            }}
+          />
+
+          <Route
+            path="/search"
+            render={(props) => {
+              return (
+                <>
+                  <Navbar />
+                  <Leftbar /> <Search />
+                  <Footer />
+                </>
+              );
+            }}
+          />
+          <Route
+            // exact
             path="/popular"
-            render={(props) => (
-              <Movies title="Popular" url={popularUrl} {...props} />
-            )}
+            render={(props) => {
+              return (
+                <>
+                  <Navbar />
+                  <Leftbar />
+                  <Movies title="Popular" url={popularUrl} {...props} />
+                  <Footer />
+                </>
+              );
+            }}
           />
           <Route
             // exact
             path="/nowplaying"
-            render={(props) => (
-              <Movies title="Now Playing" url={nowPlaying} {...props} />
-            )}
+            render={(props) => {
+              return (
+                <>
+                  <Navbar />
+                  <Leftbar />
+                  <Movies title="Now Playing" url={nowPlaying} {...props} />
+                  <Footer />
+                </>
+              );
+            }}
           />
-          <Route
-            // exact
-            path="/toprated"
-            render={(props) => (
-              <Movies title="Top Rated" url={topRated} {...props} />
-            )}
-          />
-          <Route path="/genre" render={(props) => <Genre {...props} />} />
-
-          <Route path="/search" render={(props) => <Search query={query} />} />
-
+          <Route path="/movie/:id" component={Movie} />
           <Route
             exact
             path="/"
-            render={(props) => <SectionContainer {...props} />}
+            render={(props) => {
+              return (
+                <>
+                  <Navbar />
+                  <Leftbar />
+                  <SectionContainer {...props} />
+                  <Footer />
+                </>
+              );
+            }}
           />
+          <Route path="*">
+            <Navbar />
+            <Leftbar />
+            <SectionContainer />
+            <Footer />
+          </Route>
         </Switch>
-        <Footer />
       </div>
     </Router>
   );

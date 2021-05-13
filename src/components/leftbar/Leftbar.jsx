@@ -1,5 +1,6 @@
 import "./Leftbar.css";
 import { Link } from "react-router-dom";
+
 const Leftbar = () => {
   return (
     <div className="leftbar-container">
@@ -12,12 +13,23 @@ const Leftbar = () => {
         </Link>
         <Link to="/genre">
           <li className="menu-item">
-            <i className="bx bxs-movie box-icon"></i>Genre
+            <i class="bx bxs-collection box-icon"></i>Genre
           </li>
         </Link>
+
         <Link to="/toprated">
           <li className="menu-item">
             <i className="bx bxs-star box-icon"></i>Top Rated
+          </li>
+        </Link>
+        <Link to="/popular">
+          <li className="menu-item">
+            <i class="bx bxs-movie box-icon"></i>Popular
+          </li>
+        </Link>
+        <Link to="/nowplaying">
+          <li className="menu-item">
+            <i class="bx bx-play box-icon"></i>Now Playing
           </li>
         </Link>
       </ul>

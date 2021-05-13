@@ -55,7 +55,14 @@ const Search = () => {
         <div className="movies-container">
           {docs &&
             docs.map((movie) => {
-              return <Card posterURL={movie.poster_path} title={movie.title} />;
+              return (
+                <Card
+                  posterURL={movie.poster_path}
+                  title={movie.title}
+                  id={movie.id}
+                  vote_average={movie.vote_average}
+                />
+              );
             })}
         </div>
       ) : (

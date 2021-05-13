@@ -42,7 +42,12 @@ const Section = ({ title, url, path }) => {
           </button>
           <div className="all-cards" ref={cards}>
             {docs.map((movie, index) => (
-              <Card posterURL={movie.poster_path} title={movie.title} />
+              <Card
+                posterURL={movie.poster_path}
+                title={movie.title}
+                id={movie.id}
+                vote_average={movie.vote_average}
+              />
             ))}
           </div>
           <button id="next" className="scroll-btn" onClick={handleScrollNext}>

@@ -1,0 +1,91 @@
+.movie-container {
+  width: 100vw;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.movie-container img {
+  height: 100%;
+  object-fit: cover;
+  position: fixed;
+  width: 100%;
+}
+.layer-div {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.about-cont {
+  position: relative;
+  z-index: 10;
+  color: rgba(255, 255, 255, 1);
+  display: grid;
+  grid-template-columns: 15em 8em 1fr;
+  grid-template-rows: 5em 1fr;
+  grid-template-areas:
+    ". . ."
+    ". title title"
+    ". genre genre"
+    ". . overview "
+    ". . details"
+    ". tagline tagline";
+}
+.title-cont {
+  grid-area: title;
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-indent: -1.25em;
+  margin-bottom: 0.15em;
+  /* max-width: 3ch; */
+}
+.overview {
+  margin: 3em 0 1em 0;
+  color: #bbbbbb;
+  grid-area: overview;
+  max-width: 50ch;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.5em;
+}
+.movie-details {
+  grid-area: details;
+  display: flex;
+}
+.detail {
+  margin: 0 1em;
+  font-weight: 700;
+}
+.div-border {
+  height: 100%;
+  width: 0.2em;
+  background-color: var(--acc);
+}
+.tagline {
+  grid-area: tagline;
+  color: var(--acc);
+  font-size: 2em;
+  font-weight: 500;
+  max-width: 50ch;
+}
+.release-date {
+}
+.runtime {
+}
+.budget {
+}
+.vote-average {
+  border-right: none;
+}
+.all-genres {
+  display: flex;
+  grid-area: genre;
+}
+.genre {
+  margin: 0 1em;
+  font-weight: 700;
+  color: var(--acc);
+}
+.starscolor {
+  color: yellow;
+}
