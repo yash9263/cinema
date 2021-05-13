@@ -40,6 +40,7 @@ const Slides = () => {
         <AnimatePresence>
           {docs.length > 0 && (
             <motion.img
+              loading="lazy"
               className="movie-poster"
               src={backdropurl + docs[imageIndex].backdrop_path}
               alt="aimage"

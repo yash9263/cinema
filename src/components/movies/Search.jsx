@@ -10,7 +10,6 @@ const Search = () => {
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`;
 
   const { docs } = useApi(searchUrl);
-
   return (
     <div>
       <div className="title-container">
@@ -27,33 +26,41 @@ const Search = () => {
             }}
           />
         </form>
-        <button
-          id="prev"
-          className="scroll-btn"
-          onClick={() => {
-            if (page > 1) {
-              setPage(page - 1);
-            }
-          }}
-        >
-          <i class="bx bxs-chevron-left"></i>
-        </button>
-        <button
-          id="next"
-          className="scroll-btn"
-          onClick={() => {
-            setPage(page + 1);
-          }}
-        >
-          <i class="bx bxs-chevron-right"></i>
-        </button>
+        {query.length > 0 && (
+          <>
+            <button
+              id="prev"
+              className="scroll-btn"
+              onClick={() => {
+                if (page > 1) {
+                  setPage(page - 1);
+                }
+              }}
+            >
+              <i class="bx bxs-chevron-left"></i>
+            </button>
+            <button
+              id="next"
+              className="scroll-btn"
+              onClick={() => {
+                setPage(page + 1);
+              }}
+            >
+              <i class="bx bxs-chevron-right"></i>
+            </button>
+          </>
+        )}
       </div>
-      <div className="movies-container">
-        {docs &&
-          docs.map((movie) => {
-            return <Card posterURL={movie.poster_path} title={movie.title} />;
-          })}
-      </div>
+      {query.length > 0 ? (
+        <div className="movies-container">
+          {docs &&
+            docs.map((movie) => {
+              return <Card posterURL={movie.poster_path} title={movie.title} />;
+            })}
+        </div>
+      ) : (
+        <div>Search your query</div>
+      )}
     </div>
   );
 };
