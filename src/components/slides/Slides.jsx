@@ -32,8 +32,8 @@ const Slides = () => {
     return () => clearInterval(interval);
   }, []);
 
-  console.log(docs);
-  console.log(imageIndex);
+  // console.log(docs);
+  // console.log(imageIndex);
   return (
     <div className="slides-container">
       <div className="imgs-container">

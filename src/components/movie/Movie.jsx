@@ -35,6 +35,7 @@ const Movie = () => {
       .then((data) => {
         console.log(data);
         setDetails(data);
+        // console.log(details.videos);
         setError(null);
       })
       .catch((error) => {
@@ -44,6 +45,7 @@ const Movie = () => {
   }, [id, getMovie]);
   // console.log(details.title);
   if (error) {
+    return <div>{error}</div>;
   } else {
     return (
       <div className="movie-container">
@@ -56,15 +58,16 @@ const Movie = () => {
             <div className="layer-div"></div>
             <div className="about-cont">
               <div className="title-cont">
-                {details.title
-                  .split(" ")
-                  .map((part, index) =>
-                    index > 0 ? (
-                      part + " "
-                    ) : (
-                      <div style={{ display: "block" }}>{part + " "}</div>
-                    )
-                  )}
+                {details.title &&
+                  details.title
+                    .split(" ")
+                    .map((part, index) =>
+                      index > 0 ? (
+                        part + " "
+                      ) : (
+                        <div style={{ display: "block" }}>{part + " "}</div>
+                      )
+                    )}
               </div>
               <div className="all-genres">
                 {details.genres.map((genre) => (
@@ -101,6 +104,25 @@ const Movie = () => {
                 </div>
               </div>
               <div className="tagline">{details.tagline}</div>
+              {console.log(details.videos)}
+              {/* {details.videos.results.length > 0 && (
+                <div className="videos">
+                  {details.videos.results.map((video) => {
+                    console.log(video);
+                    if (video.site === "YouTube") {
+                      return (
+                        <div>
+                          <iframe
+                            src={"https://www.youtube.com/embed/" + video.key}
+                          ></iframe>
+                        </div>
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
+                </div>
+              )} */}
             </div>
           </>
         )}
