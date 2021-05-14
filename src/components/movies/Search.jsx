@@ -4,13 +4,15 @@ import useApi from "../../hooks/useAPI";
 import Card from "../Card";
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
+import useMode from "../../hooks/useMode";
 
 const Search = () => {
   let history = useHistory();
+  const [context, setContext] = useMode();
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
 
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`;
+  const searchUrl = `https://api.themoviedb.org/3/search/${context}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`;
 
   const { docs } = useApi(searchUrl);
   return (
