@@ -44,7 +44,7 @@ const Movie = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setDetails(data);
         // console.log(details.videos);
         setError(null);

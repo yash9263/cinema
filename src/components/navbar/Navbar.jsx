@@ -5,7 +5,7 @@ import useMode from "../../hooks/useMode";
 
 const Navbar = () => {
   const [context, setContext] = useMode();
-  console.log(context);
+  // console.log(context);
   return (
     <nav className="navbar-container">
       <div className="app-title">cinemaTV</div>
