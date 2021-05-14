@@ -20,15 +20,25 @@
   z-index: 10;
   color: rgba(255, 255, 255, 1);
   display: grid;
-  grid-template-columns: 15em 8em 1fr;
-  grid-template-rows: 5em 1fr;
+  grid-template-columns: 15em 8em 1fr 15em;
+  grid-template-rows: 5em auto;
   grid-template-areas:
-    ". . ."
-    ". title title"
-    ". genre genre"
-    ". . overview "
-    ". . details"
-    ". tagline tagline";
+    ". back . ."
+    ". title title videos"
+    ". genre genre videos"
+    ". . overview videos"
+    ". . details videos"
+    ". tagline tagline videos";
+}
+.back {
+  grid-area: back;
+  background: inherit;
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text);
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 .title-cont {
   grid-area: title;
@@ -67,6 +77,29 @@
   font-size: 2em;
   font-weight: 500;
   max-width: 50ch;
+}
+.videos {
+  grid-area: videos;
+  overflow: auto;
+  padding-left: 1em;
+}
+.trailers {
+  font-weight: 700;
+  color: var(--acc);
+}
+.video {
+  height: 6em;
+  margin: 1em 0;
+  width: 6em;
+  border: 1px solid var(--left-text);
+  border-radius: 1.5em;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.video img {
+  height: 6em;
+  width: 6em;
+  position: relative;
 }
 .release-date {
 }

@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import useApi from "../../hooks/useAPI";
 import "./Movie.css";
+import { motion } from "framer-motion";
 
 const backdropurl = "https://www.themoviedb.org/t/p/original";
 
 const Movie = () => {
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
+  const keys = ["backdrop_path", "title", "genres", "overview"];
   let { id } = useParams();
+  let history = useHistory();
   // let id = 460465;
   // const details = {
   //   backdrop_path: "/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg",
@@ -45,7 +48,11 @@ const Movie = () => {
   }, [id, getMovie]);
   // console.log(details.title);
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <div>
+        {error} Required details are not present to load this Movie page.
+      </div>
+    );
   } else {
     return (
       <div className="movie-container">
@@ -57,6 +64,14 @@ const Movie = () => {
             />
             <div className="layer-div"></div>
             <div className="about-cont">
+              <motion.button
+                className="back"
+                onClick={() => history.goBack()}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                ← Back
+              </motion.button>
               <div className="title-cont">
                 {details.title &&
                   details.title
@@ -70,14 +85,15 @@ const Movie = () => {
                     )}
               </div>
               <div className="all-genres">
-                {details.genres.map((genre) => (
-                  <div className="genre">{genre.name}</div>
-                ))}
+                {details.genres &&
+                  details.genres.map((genre) => (
+                    <div className="genre">{genre.name}</div>
+                  ))}
               </div>
               <div className="overview">{details.overview}</div>
               <div className="movie-details">
                 <div className="detail relase-date">
-                  {details.release_date.split("-")[0]}
+                  {details.release_date && details.release_date.split("-")[0]}
                 </div>
                 <span className="div-border"></span>
                 <div className="detail runtime">
@@ -105,24 +121,39 @@ const Movie = () => {
               </div>
               <div className="tagline">{details.tagline}</div>
               {console.log(details.videos)}
-              {/* {details.videos.results.length > 0 && (
+              {details.videos.results.length > 0 && (
                 <div className="videos">
+                  <div className="trailers"> Trailers </div>
                   {details.videos.results.map((video) => {
                     console.log(video);
                     if (video.site === "YouTube") {
                       return (
-                        <div>
-                          <iframe
-                            src={"https://www.youtube.com/embed/" + video.key}
-                          ></iframe>
-                        </div>
+                        <motion.div
+                          className="video"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <a
+                            href={"http://www.youtube.com/watch?v=" + video.key}
+                            target="_blank"
+                          >
+                            <img
+                              src={
+                                "https://img.youtube.com/vi/" +
+                                video.key +
+                                "/0.jpg"
+                              }
+                              alt="youtube thumbnail"
+                            />
+                          </a>
+                        </motion.div>
                       );
                     } else {
                       return null;
                     }
                   })}
                 </div>
-              )} */}
+              )}
             </div>
           </>
         )}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import "./App.css";
 import Leftbar from "./components/leftbar/Leftbar";
 import Movies from "./components/movies/Movies";

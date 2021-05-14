@@ -11,7 +11,7 @@ const categoryDocs = [
   },
   {
     title: "Trending",
-    url: `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_TMDB_API_KEY}`,
+    url: `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_TMDB_API_KEY}`,
   },
 ];
 export default categoryDocs;

@@ -1,4 +1,12 @@
 .footer-container {
   grid-area: footer;
   border-top: 1px solid var(--left-text);
+  padding: 1em 0;
+}
+.footer-container ul {
+  list-style: none;
+}
+.ack {
+  background: inherit;
+  text-align: center;
 }

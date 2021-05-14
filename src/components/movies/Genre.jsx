@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import useApi from "../../hooks/useAPI";
 import Card from "../Card";
 import "./Movies.css";
+import { useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const genreList = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`;
 
 const Genre = () => {
+  let history = useHistory();
   const [genres, setgenres] = useState([]);
   const [genre, setGenre] = useState({ id: 28, name: "Action" });
   const [page, setPage] = useState(1);
@@ -45,6 +48,14 @@ const Genre = () => {
         ))}
       </div>
       <div className="title-container">
+        <motion.button
+          className="back-type"
+          onClick={() => history.goBack()}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          ← Back
+        </motion.button>
         <h1 className="category-title">{genre.name}</h1>
         <div className="divider"></div>
         <button

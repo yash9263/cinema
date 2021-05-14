@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useApi from "../../hooks/useAPI";
 import Card from "../Card";
 import "./Movies.css";
+import { useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
 
@@ -12,6 +14,7 @@ const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.e
 // console.log(process.env.REACT_APP_TMDB_API_KEY);
 // console.log(API_URL);
 const Movies = ({ url, title }) => {
+  let history = useHistory();
   const [page, setPage] = useState(1);
   const [movieurl, setmovieUrl] = useState(
     url.substring(0, url.length - 1) + page
@@ -26,6 +29,14 @@ const Movies = ({ url, title }) => {
   return (
     <div>
       <div className="title-container">
+        <motion.button
+          className="back-type"
+          onClick={() => history.goBack()}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          ← Back
+        </motion.button>
         <h1 className="category-title">{title}</h1>
         <div className="divider"></div>
         <button

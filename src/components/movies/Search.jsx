@@ -2,8 +2,11 @@ import { useState } from "react";
 import "./Movies.css";
 import useApi from "../../hooks/useAPI";
 import Card from "../Card";
+import { useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Search = () => {
+  let history = useHistory();
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
 
@@ -13,6 +16,14 @@ const Search = () => {
   return (
     <div>
       <div className="title-container">
+        <motion.button
+          className="back-type"
+          onClick={() => history.goBack()}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          ← Back
+        </motion.button>
         <h1 className="category-title">{query}</h1>
         <div className="divider"></div>
         <form className="search-form">

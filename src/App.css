@@ -24,7 +24,7 @@
   /* font-family: "Ubuntu", sans-serif; */
   /* font-weight: 500; */
   display: grid;
-  grid-template-rows: 2.35em auto 5em;
+  grid-template-rows: 2.35em auto auto;
   grid-template-columns: 10em 1fr;
   /* grid-template-columns: 13.75em calc(100vw - 13.75em); */
   grid-template-areas:

@@ -5,6 +5,17 @@
   justify-content: center;
   align-items: center;
 }
+.back-type {
+  flex: 1 0 auto;
+  background: inherit;
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
 .category-title {
   flex: 1 0 auto;
   font-size: 1.05rem;
