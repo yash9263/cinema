@@ -1,7 +1,9 @@
 import "./Leftbar.css";
 import { Link } from "react-router-dom";
+import useMode from "../../hooks/useMode";
 
 const Leftbar = () => {
+  const [context, setContext] = useMode();
   return (
     <div className="leftbar-container">
       <div className="menu-title">Menu</div>
@@ -27,11 +29,13 @@ const Leftbar = () => {
             <i class="bx bxs-movie box-icon"></i>Popular
           </li>
         </Link>
-        <Link to="/nowplaying">
-          <li className="menu-item">
-            <i class="bx bx-play box-icon"></i>Now Playing
-          </li>
-        </Link>
+        {context !== "tv" ? (
+          <Link to="/nowplaying">
+            <li className="menu-item">
+              <i class="bx bx-play box-icon"></i>Now Playing
+            </li>
+          </Link>
+        ) : null}
       </ul>
     </div>
   );

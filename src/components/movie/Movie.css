@@ -26,7 +26,7 @@
     ". back . ."
     ". title title videos"
     ". genre genre videos"
-    ". . overview videos"
+    ". visit overview videos"
     ". . details videos"
     ". tagline tagline videos";
 }
@@ -39,6 +39,21 @@
   outline: none;
   border: none;
   cursor: pointer;
+}
+.visit {
+  grid-area: visit;
+}
+.visit button {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  border-radius: 0.15em;
+  font-size: 1rem;
+  padding: 0.2em 1em;
+  background-color: var(--acc);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
 }
 .title-cont {
   grid-area: title;
@@ -82,6 +97,10 @@
   grid-area: videos;
   overflow: auto;
   padding-left: 1em;
+  max-height: 60vh;
+}
+.videos::-webkit-scrollbar {
+  display: none;
 }
 .trailers {
   font-weight: 700;

@@ -16,6 +16,7 @@
   margin: 0;
   padding: 0;
 }
+
 .nav-item {
   display: inline;
   margin-left: 3rem;
@@ -23,24 +24,12 @@
   letter-spacing: 0.12em;
   color: var(--title-font);
 }
-.search-form {
-  border: 1px solid black;
-  border-radius: 5em;
-  padding: 0.1em 0.45em;
-  /* max-width: 12em; */
-}
-.search-input {
-  border: none;
-  outline: none;
-  /* width: 70%; */
-  color: inherit;
-  font-family: inherit;
-  font-weight: 700;
-  /* letter-spacing: 1px; */
-  padding: 0.175em 0.3em;
+.nav-list-color {
+  color: var(--text);
 }
 .search-btn {
   outline: none;
   border: none;
   background: inherit;
+  color: inherit;
 }

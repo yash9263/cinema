@@ -1,5 +1,6 @@
 .card-container {
   height: 15em;
+  width: 10em;
   min-width: 160px;
   position: relative;
   border-radius: 0.5em;

@@ -11,16 +11,19 @@ import Genre from "./components/movies/Genre";
 import Search from "./components/movies/Search";
 import Movie from "./components/movie/Movie";
 import Home from "./components/home/Home";
+import ProvideMode from "./ProvideMode";
+import useMode from "./hooks/useMode";
 
 const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
 
-const popularUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
-const nowPlaying = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
-const topRated = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
-
 function App() {
+  const [context, useContext] = useMode();
   // useEffect(() => {}, []);
   // return <Movie />;
+  const popularUrl = `https://api.themoviedb.org/3/${context}/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
+  const nowPlaying = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
+  const topRated = `https://api.themoviedb.org/3/${context}/top_rated?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
+
   return (
     <Router>
       <div className="App">
@@ -92,7 +95,7 @@ function App() {
               );
             }}
           />
-          <Route path="/movie/:id" component={Movie} />
+          <Route path={"/" + context + "/:id"} component={Movie} />
           <Route
             exact
             path="/"

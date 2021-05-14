@@ -4,17 +4,23 @@ import Card from "../Card";
 import "./Movies.css";
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
+import useMode from "../../hooks/useMode";
 
 const genreList = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`;
 
 const Genre = () => {
   let history = useHistory();
+  const [context, useContext] = useMode();
   const [genres, setgenres] = useState([]);
   const [genre, setGenre] = useState({ id: 28, name: "Action" });
   const [page, setPage] = useState(1);
 
-  const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=popularity.asc&include_adult=false&include_video=false&page=${page}&with_genres=${genre.id}`;
-
+  let genreUrl;
+  if (context === "movie") {
+    genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=popularity.asc&include_adult=false&include_video=false&page=${page}&with_genres=${genre.id}`;
+  } else {
+    genreUrl = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=${page}&timezone=America%2FNew_York&with_genres=${genre.id}&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`;
+  }
   useEffect(() => {
     fetch(genreList)
       .then((res) => res.json())
@@ -81,18 +87,14 @@ const Genre = () => {
       </div>
       <div className="movies-container">
         {docs.map((doc) => {
-          if (doc.poster_path) {
-            return (
-              <Card
-                posterURL={doc.poster_path}
-                title={doc.title}
-                id={doc.id}
-                vote_average={doc.vote_average}
-              />
-            );
-          } else {
-            return null;
-          }
+          return (
+            <Card
+              posterURL={doc.poster_path}
+              title={doc.title}
+              id={doc.id}
+              vote_average={doc.vote_average}
+            />
+          );
         })}
       </div>
     </div>

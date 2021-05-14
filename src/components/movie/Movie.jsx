@@ -3,12 +3,14 @@ import { useParams, useHistory } from "react-router";
 import useApi from "../../hooks/useAPI";
 import "./Movie.css";
 import { motion } from "framer-motion";
+import useMode from "../../hooks/useMode";
 
 const backdropurl = "https://www.themoviedb.org/t/p/original";
 
 const Movie = () => {
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
+  const [context, setContext] = useMode();
   const keys = ["backdrop_path", "title", "genres", "overview"];
   let { id } = useParams();
   let history = useHistory();
@@ -30,11 +32,17 @@ const Movie = () => {
   //   release_date: "2021-05-05",
   // };
 
-  const getMovie = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&append_to_response=videos`;
+  const getMovie = `https://api.themoviedb.org/3/${context}/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&append_to_response=videos`;
   //   console.log(getMovie);
   useEffect(() => {
     fetch(getMovie)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          // make the promise be rejected if we didn't get a 2xx response
+          throw new Error("Resource not found");
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
         setDetails(data);
@@ -51,6 +59,14 @@ const Movie = () => {
     return (
       <div>
         {error} Required details are not present to load this Movie page.
+        <motion.button
+          className="back"
+          onClick={() => history.goBack()}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          ← GO Back
+        </motion.button>
       </div>
     );
   } else {
@@ -60,7 +76,7 @@ const Movie = () => {
           <>
             <img
               src={backdropurl + details.backdrop_path}
-              alt={details.title}
+              alt={context === "movie" ? details.title : details.name}
             />
             <div className="layer-div"></div>
             <div className="about-cont">
@@ -73,16 +89,25 @@ const Movie = () => {
                 ← Back
               </motion.button>
               <div className="title-cont">
-                {details.title &&
-                  details.title
-                    .split(" ")
-                    .map((part, index) =>
-                      index > 0 ? (
-                        part + " "
-                      ) : (
-                        <div style={{ display: "block" }}>{part + " "}</div>
+                {context === "movie"
+                  ? details.title
+                      .split(" ")
+                      .map((part, index) =>
+                        index > 0 ? (
+                          part + " "
+                        ) : (
+                          <div style={{ display: "block" }}>{part + " "}</div>
+                        )
                       )
-                    )}
+                  : details.name
+                      .split(" ")
+                      .map((part, index) =>
+                        index > 0 ? (
+                          part + " "
+                        ) : (
+                          <div style={{ display: "block" }}>{part + " "}</div>
+                        )
+                      )}
               </div>
               <div className="all-genres">
                 {details.genres &&
@@ -90,22 +115,43 @@ const Movie = () => {
                     <div className="genre">{genre.name}</div>
                   ))}
               </div>
+              {details.homepage.length > 1 && (
+                <div className="visit">
+                  <a href={details.homepage} target="_blank">
+                    <button>Visit 🠒</button>
+                  </a>
+                </div>
+              )}
               <div className="overview">{details.overview}</div>
               <div className="movie-details">
                 <div className="detail relase-date">
-                  {details.release_date && details.release_date.split("-")[0]}
+                  {context === "movie"
+                    ? details.release_date.split("-")[0]
+                    : details.first_air_date.split("-")[0]}
                 </div>
                 <span className="div-border"></span>
-                <div className="detail runtime">
-                  {Math.floor(details.runtime / 60) > 0
-                    ? Math.floor(details.runtime / 60) + " hr "
-                    : ""}
-                  {details.runtime % 60 > 0
-                    ? (details.runtime % 60) + " min"
-                    : ""}
-                </div>
+                {context === "movie" ? (
+                  <div className="detail runtime">
+                    {Math.floor(details.runtime / 60) > 0
+                      ? Math.floor(details.runtime / 60) + " hr "
+                      : ""}
+                    {details.runtime % 60 > 0
+                      ? (details.runtime % 60) + " min"
+                      : ""}
+                  </div>
+                ) : (
+                  <div className="detail runtime">
+                    {details.number_of_seasons > 1
+                      ? details.number_of_seasons + " Seasons"
+                      : details.number_of_seasons + " Season"}
+                  </div>
+                )}
                 <span className="div-border"></span>
-                <div className="detail budget">${details.budget}</div>
+                <div className="detail budget">
+                  {context === "movie"
+                    ? "$ " + details.budget
+                    : details.number_of_episodes + " episodes"}
+                </div>
                 <span className="div-border"></span>
                 <div className="detail vote-average">
                   <div className="stars">
@@ -120,12 +166,11 @@ const Movie = () => {
                 </div>
               </div>
               <div className="tagline">{details.tagline}</div>
-              {console.log(details.videos)}
+
               {details.videos.results.length > 0 && (
                 <div className="videos">
                   <div className="trailers"> Trailers </div>
                   {details.videos.results.map((video) => {
-                    console.log(video);
                     if (video.site === "YouTube") {
                       return (
                         <motion.div
