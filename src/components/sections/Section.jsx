@@ -31,9 +31,10 @@ const Section = ({ title, url, path }) => {
     return (
       <div className="category">
         <div className="title-container">
-          <Link to={path}>
-            <h1 className="category-title">{title}</h1>
-          </Link>
+          <h1 className="catg-title">
+            <Link to={path}>{title}</Link>
+          </h1>
+
           <div className="divider"></div>
         </div>
         <div className="section-container">

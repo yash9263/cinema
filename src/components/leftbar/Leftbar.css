@@ -1,11 +1,11 @@
 .leftbar-container {
   grid-area: leftbar;
-  color: var(--title-font);
+  color: var(--left-text);
   /* background-color: aquamarine; */
-  font-size: 1rem;
+  font-size: 0.875em;
   font-weight: 600;
   padding-left: 1em;
-  border-right: 0.12em solid #e7ecfd;
+  border-right: 0.12em solid var(--left-text);
 }
 .leftbar-container {
 }

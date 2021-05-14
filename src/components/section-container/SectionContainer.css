@@ -1,6 +1,6 @@
 .sections-container {
   grid-area: sections;
-  max-width: calc(100vw - 13.05em);
+  max-width: calc(100vw - 11.05em);
   height: 100%;
   /* position: relative; */
   /* background-color: blue; */

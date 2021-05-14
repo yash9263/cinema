@@ -1,4 +1,4 @@
 .footer-container {
   grid-area: footer;
-  background-color: aqua;
+  border-top: 1px solid var(--left-text);
 }

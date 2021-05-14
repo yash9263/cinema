@@ -6,16 +6,19 @@
   justify-content: center;
   align-items: center;
 }
-.category-title {
-  flex: 1 1 auto;
-  font-size: 1.15rem;
+.catg-title {
+  display: inline-block;
+  flex: 0 0 auto;
+  color: var(--text);
+  font-size: 1.05rem;
   font-family: "Oswald", sans-serif;
   letter-spacing: 1px;
+  padding: 0;
 }
 .divider {
   flex: 1 1 auto;
-  background-color: var(--divider);
-  height: 0.2em;
+  background-color: var(--left-text);
+  height: 0.12em;
   width: 100%;
   margin: 0 1em;
 }
@@ -27,7 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(242, 243, 248);
+  /* background-color: rgb(242, 243, 248); */
   width: 100%;
   /* height: 100vh; */
   overflow: hidden;
@@ -83,22 +86,22 @@
   position: relative;
 }
 .scroll-btn {
-  min-width: 35px;
-  height: 60px;
+  min-width: 2em;
+  height: 3em;
   border-radius: 20px;
-  background: #fff;
+  background: var(--left-text);
   border: 0px;
   outline: none;
   cursor: pointer;
   z-index: 200;
-  margin: 10px;
+  margin: 0.5em;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.08);
   transition: all 0.25s ease;
 }
 .scroll-btn:hover {
-  transform: translate(0, -10px);
-  box-shadow: 0px 17px 35px rgba(0, 0, 0, 0.07);
+  transform: translate(0, -5px);
+  box-shadow: 0px 0px 25px rgba(255, 255, 248, 1);
 }
 .btn i {
-  font-size: 1.2rem;
+  font-size: 2rem;
 }

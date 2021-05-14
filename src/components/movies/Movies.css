@@ -1,12 +1,13 @@
 .title-container {
   padding-left: 1.2rem;
+  padding-right: 2.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .category-title {
   flex: 1 0 auto;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-family: "Oswald", sans-serif;
   letter-spacing: 1px;
 }
@@ -17,7 +18,7 @@
   width: 100%;
   margin: 0 1em;
 }
-.scroll-btn {
+/* .scroll-btn {
   min-width: 35px;
   height: 60px;
   border-radius: 20px;
@@ -36,11 +37,12 @@
 }
 .btn i {
   font-size: 1.2rem;
-}
+} */
 
 .movies-container {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 1em;
 }
 
 .genre-container {

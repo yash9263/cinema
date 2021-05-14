@@ -6,22 +6,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap");
 :root {
   --title-font: #77879e;
-  --acc: #e71d60;
+  --acc: #d81f26;
   --divider: #e7ecfd;
+  --bg: #1c1d22;
+  --text: #eeeff8;
+  --left-text: #5b5e6f;
 }
 .App {
+  background-color: var(--bg);
   min-height: 100vh;
   /* font-family: "Mitr", sans-serif; */
   /* font-family: "Roboto", sans-serif; */
   /* font-family: "Merriweather", serif; */
-  color: #0d080d;
+  color: var(--text);
   font-family: "Itim", cursive;
   /* font-family: "Source Sans Pro", sans-serif; */
   /* font-family: "Ubuntu", sans-serif; */
   /* font-weight: 500; */
   display: grid;
   grid-template-rows: 2.35em auto 5em;
-  grid-template-columns: 12em 1fr;
+  grid-template-columns: 10em 1fr;
   /* grid-template-columns: 13.75em calc(100vw - 13.75em); */
   grid-template-areas:
     "navbar navbar"
