@@ -30,3 +30,9 @@
   margin-right: 0.75em;
   font-weight: bold;
 }
+
+@media screen and (max-width: 600px) {
+  .leftbar-container {
+    position: fixed;
+  }
+}

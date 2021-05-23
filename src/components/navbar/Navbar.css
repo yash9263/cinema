@@ -6,6 +6,9 @@
   justify-content: space-around;
   border-bottom: 1px solid var(--left-text);
 }
+.nav-icon {
+  display: none;
+}
 .app-title {
   font-size: 1.2em;
   /* font-weight: bold; */
@@ -32,4 +35,13 @@
   border: none;
   background: inherit;
   color: inherit;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-container {
+    flex-direction: column;
+  }
+  .nav-icon {
+    display: block;
+  }
 }

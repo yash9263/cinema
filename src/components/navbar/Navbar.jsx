@@ -8,6 +8,9 @@ const Navbar = () => {
   // console.log(context);
   return (
     <nav className="navbar-container">
+      <div className="nav-icon">
+        <i className="fas fa-bars"></i>
+      </div>
       <div className="app-title">cinemaTV</div>
       <ul className="nav-list">
         <Link to="/">

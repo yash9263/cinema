@@ -2,6 +2,10 @@
   grid-area: sections;
   max-width: calc(100vw - 11.05em);
   height: 100%;
-  /* position: relative; */
-  /* background-color: blue; */
+}
+
+@media screen and (max-width: 600px) {
+  .sections-container {
+    max-width: 100%;
+  }
 }
