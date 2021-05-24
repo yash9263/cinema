@@ -18,11 +18,17 @@ const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.e
 
 function App() {
   const [context, useContext] = useMode();
+  const [showLeftbar, setShowLeftbar] = useState(false);
   // useEffect(() => {}, []);
   // return <Movie />;
   const popularUrl = `https://api.themoviedb.org/3/${context}/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
   const nowPlaying = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
   const topRated = `https://api.themoviedb.org/3/${context}/top_rated?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
+  console.log(showLeftbar);
+  const updateShowState = () => {
+    setShowLeftbar(!showLeftbar);
+    console.log(showLeftbar);
+  };
 
   return (
     <Router>
@@ -34,8 +40,11 @@ function App() {
             render={(props) => {
               return (
                 <>
-                  <Navbar />
-                  <Leftbar />
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />
                   <Movies title="Top Rated" url={topRated} {...props} />
                   <Footer />
                 </>
@@ -47,8 +56,12 @@ function App() {
             render={(props) => {
               return (
                 <>
-                  <Navbar />
-                  <Leftbar /> <Genre {...props} />
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />{" "}
+                  <Genre {...props} />
                   <Footer />
                 </>
               );
@@ -60,8 +73,12 @@ function App() {
             render={(props) => {
               return (
                 <>
-                  <Navbar />
-                  <Leftbar /> <Search />
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />{" "}
+                  <Search />
                   <Footer />
                 </>
               );
@@ -73,8 +90,11 @@ function App() {
             render={(props) => {
               return (
                 <>
-                  <Navbar />
-                  <Leftbar />
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />
                   <Movies title="Popular" url={popularUrl} {...props} />
                   <Footer />
                 </>
@@ -87,8 +107,11 @@ function App() {
             render={(props) => {
               return (
                 <>
-                  <Navbar />
-                  <Leftbar />
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />
                   <Movies title="Now Playing" url={nowPlaying} {...props} />
                   <Footer />
                 </>
@@ -102,8 +125,11 @@ function App() {
             render={(props) => {
               return (
                 <>
-                  <Navbar />
-                  <Leftbar />
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />
                   <SectionContainer {...props} />
                   <Footer />
                 </>
@@ -111,8 +137,11 @@ function App() {
             }}
           />
           <Route path="*">
-            <Navbar />
-            <Leftbar />
+            <Navbar setShowLeftbar={setShowLeftbar} />
+            <Leftbar
+              showLeftbar={showLeftbar}
+              setShowLeftbar={setShowLeftbar}
+            />
             <SectionContainer />
             <Footer />
           </Route>

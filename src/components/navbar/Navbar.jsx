@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import useMode from "../../hooks/useMode";
 
-const Navbar = () => {
+const Navbar = ({ setShowLeftbar }) => {
   const [context, setContext] = useMode();
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -18,11 +18,17 @@ const Navbar = () => {
       });
     };
   }, []);
+
   return (
     <nav className="navbar-container">
-      <div className="nav-icon">
+      <button
+        className="nav-icon"
+        onClick={() => {
+          setShowLeftbar((prevState) => !prevState);
+        }}
+      >
         <i className="fas fa-bars"></i>
-      </div>
+      </button>
       <div className="app-title">cinemaTV</div>
       {windowSize.width > 600 && (
         <ul className="nav-list">

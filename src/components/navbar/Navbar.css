@@ -44,5 +44,10 @@
   }
   .nav-icon {
     display: block;
+    color: white;
+    background: inherit;
+    border: none;
+    outline: none;
+    font-size: 1em;
   }
 }
