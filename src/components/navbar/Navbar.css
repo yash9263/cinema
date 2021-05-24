@@ -39,7 +39,8 @@
 
 @media screen and (max-width: 600px) {
   .navbar-container {
-    flex-direction: column;
+    /* flex-direction: column; */
+    padding: 0.4em 0em;
   }
   .nav-icon {
     display: block;

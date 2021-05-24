@@ -33,6 +33,11 @@
 
 @media screen and (max-width: 600px) {
   .leftbar-container {
+    display: none;
     position: fixed;
+    background: var(--bg);
+    z-index: 500;
+    height: 100vh;
+    width: 100vw;
   }
 }

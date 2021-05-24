@@ -1,11 +1,52 @@
+import { useState, useEffect } from "react";
 import "./Leftbar.css";
 import { Link } from "react-router-dom";
 import useMode from "../../hooks/useMode";
 
 const Leftbar = () => {
   const [context, setContext] = useMode();
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+  });
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowSize({ width: window.innerWidth });
+    });
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWindowSize({ width: window.innerWidth });
+      });
+    };
+  }, []);
   return (
     <div className="leftbar-container">
+      {windowSize.width < 600 && (
+        <div>
+          <div className="menu-title"> Categories</div>
+          <ul className="menu-list">
+            <li
+              style={{ cursor: "pointer" }}
+              className={context === "movie" ? "nav-list-color " : ""}
+              onClick={() => {
+                setContext("movie");
+              }}
+            >
+              Movies
+            </li>
+            <li
+              style={{ cursor: "pointer" }}
+              className={
+                context === "tv" ? "nav-list-color nav-item" : "nav-item"
+              }
+              onClick={() => {
+                setContext("tv");
+              }}
+            >
+              Tv Shows
+            </li>
+          </ul>
+        </div>
+      )}
       <div className="menu-title">Menu</div>
       <ul className="menu-list">
         <Link to="/">
