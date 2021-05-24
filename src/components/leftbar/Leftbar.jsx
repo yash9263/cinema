@@ -22,8 +22,8 @@ const Leftbar = ({ showLeftbar, setShowLeftbar }) => {
     <div
       className={
         showLeftbar
-          ? "leftbar-container"
-          : "leftbar-container showLeftbar-container"
+          ? "leftbar-container showLeftbar-container"
+          : "leftbar-container"
       }
     >
       {windowSize.width < 600 && (

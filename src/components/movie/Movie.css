@@ -141,3 +141,6 @@
 .starscolor {
   color: yellow;
 }
+
+@media screen and (max-width: 600px) {
+}

@@ -26,6 +26,7 @@
   object-fit: cover;
   transition: all 0.25s ease;
   opacity: 0.8;
+  width: 100%;
 }
 
 .card-container:hover {
@@ -38,4 +39,12 @@
 }
 .card-container:hover .vote-bar {
   top: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .card-container {
+    height: 7.5em;
+    width: 5em;
+    min-width: 7em;
+  }
 }

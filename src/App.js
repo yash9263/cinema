@@ -24,11 +24,6 @@ function App() {
   const popularUrl = `https://api.themoviedb.org/3/${context}/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
   const nowPlaying = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
   const topRated = `https://api.themoviedb.org/3/${context}/top_rated?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`;
-  console.log(showLeftbar);
-  const updateShowState = () => {
-    setShowLeftbar(!showLeftbar);
-    console.log(showLeftbar);
-  };
 
   return (
     <Router>
