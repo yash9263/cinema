@@ -14,23 +14,6 @@ const Movie = () => {
   const keys = ["backdrop_path", "title", "genres", "overview"];
   let { id } = useParams();
   let history = useHistory();
-  // let id = 460465;
-  // const details = {
-  //   backdrop_path: "/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg",
-  //   overview:
-  //     "A man refuses all assistance from his daughter as he ages and, as he tries to make sense of his changing circumstances, he begins to doubt his loved ones, his own mind and even the fabric of his reality.",
-  //   budget: 20000000,
-  //   genres: [
-  //     { id: 28, name: "Action" },
-  //     { id: 14, name: "Fantasy" },
-  //     { id: 12, name: "Adventure" },
-  //   ],
-  //   tagline: "Get over here.",
-  //   title: "Mortal Kombat",
-  //   vote_average: 9.1,
-  //   runtime: 110,
-  //   release_date: "2021-05-05",
-  // };
 
   const getMovie = `https://api.themoviedb.org/3/${context}/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&append_to_response=videos`;
   //   console.log(getMovie);
@@ -118,7 +101,7 @@ const Movie = () => {
               {details.homepage.length > 1 && (
                 <div className="visit">
                   <a href={details.homepage} target="_blank">
-                    <button>Visit 🠒</button>
+                    <button>Visit 🠖</button>
                   </a>
                 </div>
               )}
