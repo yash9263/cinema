@@ -13,6 +13,7 @@
   margin: 1em 0;
   font-size: 1em;
   letter-spacing: 2px;
+  color: var(--acc);
 }
 .menu-list {
   padding: 0;
