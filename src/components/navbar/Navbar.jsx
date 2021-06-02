@@ -63,7 +63,7 @@ const Navbar = ({ setShowLeftbar }) => {
 
       <Link to="/search">
         <button className="search-btn">
-          <i className="bx bx-search bx-border-circle">Search</i>
+          <i className="bx bx-search ">Search</i>
         </button>
       </Link>
     </nav>

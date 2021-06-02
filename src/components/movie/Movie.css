@@ -178,14 +178,26 @@
   }
   .overview {
     margin: 2em 1em 1em 1em;
+    color: whitesmoke;
+  }
+  .movie-details {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 0.875em;
+    margin: 0.2em;
+    font-weight: 600;
+  }
+  .detail {
+    margin: 0.2em;
   }
   .tagline {
-    margin: 0 0.5em;
+    margin: 0.3em 0.5em;
     font-size: 1.5em;
   }
   .videos {
     display: flex;
     flex-wrap: wrap;
+    margin: 0.2em 0;
   }
   .trailers {
     display: none;

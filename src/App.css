@@ -14,7 +14,7 @@
   color: var(--text);
   font-family: "Itim", cursive;
   display: grid;
-  grid-template-rows: 2.35em auto auto;
+  grid-template-rows: 2.35em auto 5em;
   grid-template-columns: 10em 1fr;
   grid-template-areas:
     "navbar navbar"
