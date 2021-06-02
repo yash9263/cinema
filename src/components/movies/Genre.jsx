@@ -43,13 +43,17 @@ const Genre = () => {
   return (
     <div className="genre-container">
       <div className="all-genre">
-        {genres.map((genre) => (
+        {genres.map((_genre) => (
           <button
-            className="genre-btn"
-            id={genre.id}
-            onClick={() => setGenre({ id: genre.id, name: genre.name })}
+            className={
+              _genre.id === genre.id
+                ? "genre-btn active-genre-btn"
+                : "genre-btn"
+            }
+            id={_genre.id}
+            onClick={() => setGenre({ id: _genre.id, name: _genre.name })}
           >
-            {genre.name}
+            {_genre.name}
           </button>
         ))}
       </div>
