@@ -13,7 +13,6 @@ const Section = ({ title, url, path }) => {
 
   const handleScrollNext = (event) => {
     event.preventDefault();
-    // console.log(cards.current.offsetWidth, cards.current.offsetWidth / 2);
     cards.current.scrollLeft = cards.current.scrollLeft +=
       window.innerWidth / 2 > 600
         ? window.innerWidth / 2
@@ -21,7 +20,6 @@ const Section = ({ title, url, path }) => {
   };
   const handleScrollPrev = (event) => {
     event.preventDefault();
-    // console.log(cards.current.offsetWidth, cards.current.offsetWidth / 2);
     cards.current.scrollLeft = cards.current.scrollLeft -=
       window.innerWidth / 2 > 600
         ? window.innerWidth / 2
@@ -44,6 +42,7 @@ const Section = ({ title, url, path }) => {
           <div className="all-cards" ref={cards}>
             {docs.map((movie, index) => (
               <Card
+                movie={movie}
                 posterURL={movie.poster_path}
                 title={movie.title}
                 id={movie.id}

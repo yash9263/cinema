@@ -70,6 +70,7 @@ const Search = () => {
             docs.map((movie) => {
               return (
                 <Card
+                  movie={movie}
                   posterURL={movie.poster_path}
                   title={movie.title}
                   id={movie.id}

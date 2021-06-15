@@ -22,23 +22,36 @@
 }
 .card-container img {
   height: 100%;
-  /* max-width: 213.33px; */
   object-fit: cover;
   transition: all 0.25s ease;
   opacity: 0.8;
   width: 100%;
 }
-
+.movie-title-cont,
+.watched-icon-cont {
+  position: absolute;
+  font-size: 1.2em;
+  background-color: snow;
+  border: 0;
+  outline: none;
+}
 .card-container:hover {
   cursor: pointer;
 }
 .card-container:hover img {
   height: 110%;
-  /* max-width: 22em; */
   opacity: 1;
 }
 .card-container:hover .vote-bar {
   top: 0;
+}
+.card-container:hover .movie-title-cont {
+  left: 0;
+  top: 0;
+}
+.card-container:hover .watched-icon-cont {
+  left: 0;
+  top: 1.5em;
 }
 
 @media screen and (max-width: 600px) {

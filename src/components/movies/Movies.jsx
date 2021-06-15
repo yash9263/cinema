@@ -65,6 +65,7 @@ const Movies = ({ url, title }) => {
           // console.log(movie.vote_average);
           return (
             <Card
+              movie={movie}
               posterURL={movie.poster_path}
               title={movie.title}
               id={movie.id}

@@ -38,6 +38,7 @@ const Genre = () => {
         console.log(error);
       });
   }, []);
+
   const { docs } = useApi(genreUrl);
   //   console.log(docs);
   return (
@@ -89,6 +90,7 @@ const Genre = () => {
         {docs.map((doc) => {
           return (
             <Card
+              movie={doc}
               posterURL={doc.poster_path}
               title={doc.title}
               id={doc.id}

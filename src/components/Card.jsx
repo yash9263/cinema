@@ -3,15 +3,39 @@ import useMode from "../hooks/useMode";
 import "./Card.css";
 
 const IMG_URL = "https://image.tmdb.org/t/p/w500/";
-const Card = ({ posterURL, title, id, vote_average }) => {
+const Card = ({ movie, posterURL, title, id, vote_average }) => {
   const [context, setContext] = useMode();
-  // console.log(vote_average);
+  const saveMovie = () => {
+    let prevItems = [];
+    if (localStorage.getItem("wishlist")) {
+      prevItems = JSON.parse(localStorage.getItem("wishlist"));
+    }
+    const found = prevItems.some((el) => el.id === movie.id);
+
+    if (!found) {
+      prevItems.push(movie);
+    }
+    localStorage.setItem("wishlist", JSON.stringify(prevItems));
+  };
+
+  const addWatchedMovie = () => {
+    let prevMovies = [];
+    if (localStorage.getItem("watched")) {
+      prevMovies = JSON.parse(localStorage.getItem("watched"));
+    }
+    const found = prevMovies.some((el) => el.id === movie.id);
+
+    if (!found) {
+      prevMovies.push(movie);
+    }
+    localStorage.setItem("watched", JSON.stringify(prevMovies));
+  };
+
   return (
     <div className="card-container">
       <div className="vote-bar">{vote_average}</div>
       <Link to={"/" + context + "/" + id}>
         <img
-          loading="lazy"
           src={
             posterURL !== null
               ? IMG_URL + posterURL
@@ -20,7 +44,12 @@ const Card = ({ posterURL, title, id, vote_average }) => {
           alt={title + " movie poster"}
         />
       </Link>
-      {/* <div>{title}</div> */}
+      <button onClick={() => saveMovie()} className="movie-title-cont">
+        <i class="fas fa-bookmark"></i>
+      </button>
+      <button onClick={() => addWatchedMovie()} className="watched-icon-cont">
+        <i class="fas fa-check"></i>
+      </button>
     </div>
   );
 };

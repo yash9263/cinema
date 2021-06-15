@@ -8,8 +8,6 @@ const backdropurl = "https://www.themoviedb.org/t/p/original";
 
 const Slides = () => {
   const [context, setContext] = useMode();
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
   let upcomingURL;
 
@@ -34,8 +32,6 @@ const Slides = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // console.log(docs);
-  // console.log(imageIndex);
   return (
     <div className="slides-container">
       <div className="imgs-container">
