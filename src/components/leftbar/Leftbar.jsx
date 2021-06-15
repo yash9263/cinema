@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "./Leftbar.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useMode from "../../hooks/useMode";
+import { authService } from "../../firebase-config.js";
 
 const Leftbar = ({ showLeftbar, setShowLeftbar }) => {
   const [context, setContext] = useMode();
+  const history = useHistory();
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
   });
@@ -18,6 +20,17 @@ const Leftbar = ({ showLeftbar, setShowLeftbar }) => {
       });
     };
   }, []);
+
+  const handleSignOut = () => {
+    authService
+      .signOut()
+      .then(() => {
+        history.push("/");
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
   return (
     <div
       className={
@@ -120,6 +133,22 @@ const Leftbar = ({ showLeftbar, setShowLeftbar }) => {
             </li>
           </Link>
         ) : null}
+        {authService.currentUser ? (
+          <span>
+            <li className="menu-item" onClick={handleSignOut}>
+              Sign Out
+            </li>
+          </span>
+        ) : (
+          <Link
+            to="/signin"
+            onClick={() => {
+              setShowLeftbar(!showLeftbar);
+            }}
+          >
+            <li className="menu-item">Login</li>
+          </Link>
+        )}
       </ul>
     </div>
   );

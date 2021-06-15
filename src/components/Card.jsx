@@ -1,34 +1,64 @@
 import { Link } from "react-router-dom";
 import useMode from "../hooks/useMode";
 import "./Card.css";
+import { authService, db } from "../firebase-config";
+import "firebase/firestore";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const IMG_URL = "https://image.tmdb.org/t/p/w500/";
 const Card = ({ movie, posterURL, title, id, vote_average }) => {
   const [context, setContext] = useMode();
+  const user = authService.currentUser;
   const saveMovie = () => {
-    let prevItems = [];
-    if (localStorage.getItem("wishlist")) {
-      prevItems = JSON.parse(localStorage.getItem("wishlist"));
-    }
-    const found = prevItems.some((el) => el.id === movie.id);
-
-    if (!found) {
-      prevItems.push(movie);
-    }
-    localStorage.setItem("wishlist", JSON.stringify(prevItems));
+    db.collection(`accounts/${user.uid}/watchlist`)
+      .doc(`${movie.id}`)
+      .set({ ...movie })
+      .then(() => {
+        console.log("document suceesfully added");
+        toast.success("added to watchlist", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((error) => console.error(error));
   };
 
   const addWatchedMovie = () => {
-    let prevMovies = [];
-    if (localStorage.getItem("watched")) {
-      prevMovies = JSON.parse(localStorage.getItem("watched"));
-    }
-    const found = prevMovies.some((el) => el.id === movie.id);
+    db.collection(`accounts/${user.uid}/watched`)
+      .doc(`${movie.id}`)
+      .set({ ...movie })
+      .then(() => {
+        console.log("documents suceesfully added");
+        toast.success("added to watched", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((error) => console.error(error));
+  };
 
-    if (!found) {
-      prevMovies.push(movie);
-    }
-    localStorage.setItem("watched", JSON.stringify(prevMovies));
+  const notify = () => {
+    toast.error("Please login", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    console.log("toast");
   };
 
   return (
@@ -44,10 +74,16 @@ const Card = ({ movie, posterURL, title, id, vote_average }) => {
           alt={title + " movie poster"}
         />
       </Link>
-      <button onClick={() => saveMovie()} className="movie-title-cont">
+      <button
+        onClick={user ? () => saveMovie() : notify}
+        className="movie-title-cont"
+      >
         <i class="fas fa-bookmark"></i>
       </button>
-      <button onClick={() => addWatchedMovie()} className="watched-icon-cont">
+      <button
+        onClick={user ? () => addWatchedMovie() : notify}
+        className="watched-icon-cont"
+      >
         <i class="fas fa-check"></i>
       </button>
     </div>

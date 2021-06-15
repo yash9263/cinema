@@ -6,6 +6,8 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import SectionContainer from "./components/section-container/SectionContainer";
 import useApi from "./hooks/useAPI";
+import SignIn from "./components/login/SignIn";
+import SignUp from "./components/login/SignUp";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Genre from "./components/movies/Genre";
 import Search from "./components/movies/Search";
@@ -13,6 +15,7 @@ import Movie from "./components/movie/Movie";
 import Home from "./components/home/Home";
 import ProvideMode from "./ProvideMode";
 import useMode from "./hooks/useMode";
+import { ToastContainer } from "react-toastify";
 
 const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
 
@@ -29,6 +32,36 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
+          <Route
+            path="/signin"
+            render={(props) => {
+              return (
+                <>
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <SignIn />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/signup"
+            render={(props) => {
+              return (
+                <>
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <SignUp />
+                </>
+              );
+            }}
+          />
           <Route
             // exact
             path="/toprated"
@@ -142,6 +175,17 @@ function App() {
           </Route>
         </Switch>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Router>
   );
 }
