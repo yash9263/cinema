@@ -135,6 +135,21 @@ const Leftbar = ({ showLeftbar, setShowLeftbar }) => {
         ) : null}
         {authService.currentUser ? (
           <span>
+            <Link
+              to="/watchlist"
+              onClick={() => {
+                setShowLeftbar(!showLeftbar);
+              }}
+            >
+              <li className="menu-item">
+                <i class="fas fa-bookmark"></i> Watchlist
+              </li>
+            </Link>
+            <Link to="/watched">
+              <li className="menu-item">
+                <i class="fas fa-check"></i> Watched
+              </li>
+            </Link>
             <li className="menu-item" onClick={handleSignOut}>
               Sign Out
             </li>

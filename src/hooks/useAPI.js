@@ -1,44 +1,35 @@
 import { useEffect, useState } from "react";
+import { authService } from "../firebase-config";
+import useFirestore from "./useFirestore";
 
 const useApi = (url, page = 1) => {
   const [docs, setDocs] = useState([]);
-  const [wishlist, setWishlist] = useState(
-    JSON.parse(localStorage.getItem("wishlist"))
-  );
-
-  useEffect(() => {
-    window.addEventListener("storage", () => {
-      setWishlist(JSON.parse(localStorage.getItem("wishlist")) || []);
-      console.log(wishlist);
-    });
-
-    return () => {
-      window.removeEventListener("storage", () => {
-        setWishlist(JSON.parse(localStorage.getItem("wishlist")) || []);
-      });
-    };
-  }, []);
+  const user = authService.currentUser;
+  const { movieList } = useFirestore("watchlist");
 
   useEffect(() => {
     fetch(url)
       .then((res) => {
-        // console.log(res.json());
         return res.json();
       })
       .then((data) => {
         let documents = [];
-        // console.log(data);
         data.results.forEach((doc) => {
-          const found = wishlist.some((el) => el.id === doc.id);
-
-          documents.push({ ...doc });
+          if (user) {
+            const found = movieList.some((el) => el.id === doc.id);
+            if (!found) {
+              documents.push({ ...doc });
+            }
+          } else {
+            documents.push({ ...doc });
+          }
         });
         setDocs(documents);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [url, wishlist]);
+  }, [url, movieList, user]);
 
   return { docs };
 };

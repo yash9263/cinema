@@ -16,6 +16,7 @@ import Home from "./components/home/Home";
 import ProvideMode from "./ProvideMode";
 import useMode from "./hooks/useMode";
 import { ToastContainer } from "react-toastify";
+import Watchlist from "./components/movies/Watchlist";
 
 const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
 
@@ -141,6 +142,38 @@ function App() {
                     setShowLeftbar={setShowLeftbar}
                   />
                   <Movies title="Now Playing" url={nowPlaying} {...props} />
+                  <Footer />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/watchlist"
+            render={(props) => {
+              return (
+                <>
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />
+                  <Watchlist collection="watchlist" title="Watchlist" />
+                  <Footer />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/watched"
+            render={(props) => {
+              return (
+                <>
+                  <Navbar setShowLeftbar={setShowLeftbar} />
+                  <Leftbar
+                    showLeftbar={showLeftbar}
+                    setShowLeftbar={setShowLeftbar}
+                  />
+                  <Watchlist collection="watched" title="Watched" />
                   <Footer />
                 </>
               );
